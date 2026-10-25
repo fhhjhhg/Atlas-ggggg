@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidWidgetConfig(data) {
+      return data.keys().hasAll(['widgetId', 'title', 'category', 'widgetType', 'isEnabled', 'order', 'userId'])
+        && data.widgetId is string && data.widgetId.size() > 0 && data.widgetId.size() <= 100
+        && data.title is string && data.title.size() > 0 && data.title.size() <= 100
+        && data.category is string && data.category.size() > 0 && data.category.size() <= 100
+        && data.widgetType is string && data.widgetType.size() > 0 && data.widgetType.size() <= 100
+        && data.isEnabled is bool
+        && data.order is int && data.order >= 0 && data.order <= 100
+        && data.userId is string && data.userId == request.auth.uid;
+    }
+
+    match /users/{userId}/widgetConfigs/{widgetId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidWidgetConfig(request.resource.data);
+      allow update: if isOwner(userId) && isValidWidgetConfig(request.resource.data);
+      allow delete: if isOwner(userId);
+    }
+  }
+}

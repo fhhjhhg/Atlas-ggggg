@@ -1,0 +1,6 @@
+{
+  "name": "NexusForce",
+  "description": "Atlas Godmode cyber-physical dashboard with real-time live telemetry, customizable widgets, and compounding force multiplier matrices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="firestore_database_id" translatable="false">ai-studio-android-dashmetr-69bcfbff-ae6a-4506-814f-b06133c9d19e</string>
+    <string name="recaptcha_site_key" translatable="false">6LfZefstAAAAADtis_38-YXDIzfVABKeg7jTx3p9</string>
+</resources>

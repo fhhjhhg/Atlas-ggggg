@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "WidgetConfig": {
+      "title": "WidgetConfig",
+      "description": "User configuration for a customizable dashboard widget",
+      "type": "object",
+      "properties": {
+        "widgetId": {
+          "type": "string",
+          "description": "Unique identifier of the widget"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title label of the widget"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Subtitle description of the widget"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category classification of the widget"
+        },
+        "widgetType": {
+          "type": "string",
+          "description": "Widget type enum name"
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "description": "Whether the widget is active and displayed on dashboard"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Display order index on the dashboard layout"
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the owner user"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when widget config was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when widget config was last modified"
+        }
+      },
+      "required": ["widgetId", "title", "category", "widgetType", "isEnabled", "order", "userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/widgetConfigs/{widgetId}": {
+      "schema": "WidgetConfig",
+      "description": "Collection of user-customized dashboard widget preferences"
+    }
+  }
+}
